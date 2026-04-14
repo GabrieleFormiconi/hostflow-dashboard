@@ -1394,12 +1394,43 @@ def detect_booking_export(columns):
     )
 
 
+def reset_uploaded_stream(uploaded_file):
+    if uploaded_file is not None and hasattr(uploaded_file, "seek"):
+        uploaded_file.seek(0)
+
+
+def read_excel_safely(uploaded_file, **kwargs):
+    reset_uploaded_stream(uploaded_file)
+    ext = Path(getattr(uploaded_file, "name", "")).suffix.lower()
+
+    excel_engines = []
+    if ext == ".xlsx":
+        excel_engines = [None, "openpyxl"]
+    elif ext == ".xls":
+        excel_engines = [None, "xlrd"]
+    else:
+        excel_engines = [None, "openpyxl", "xlrd"]
+
+    first_exc = None
+    for engine in excel_engines:
+        try:
+            reset_uploaded_stream(uploaded_file)
+            if engine is None:
+                return pd.read_excel(uploaded_file, **kwargs)
+            return pd.read_excel(uploaded_file, engine=engine, **kwargs)
+        except Exception as exc:
+            if first_exc is None:
+                first_exc = exc
+
+    raise first_exc
+
+
 def load_booking_file(uploaded_file, cleaning_cost_default):
     ext = Path(uploaded_file.name).suffix.lower()
     if ext == ".csv":
         raw = pd.read_csv(uploaded_file)
     elif ext in [".xls", ".xlsx"]:
-        raw = read_excel_safely(uploaded_file)
+        raw = pd.read_excel(uploaded_file)
     else:
         raise ValueError("Formato non supportato. Usa CSV, XLS o XLSX.")
 
@@ -1465,6 +1496,7 @@ def load_booking_file(uploaded_file, cleaning_cost_default):
 
 
 def load_generic_csv(uploaded_file):
+    reset_uploaded_stream(uploaded_file)
     df = pd.read_csv(uploaded_file)
     required = [
         "platform", "guest_name", "check_in", "check_out", "total_price",
@@ -1493,12 +1525,12 @@ def load_data(uploaded_file, cleaning_cost_default, import_mode):
         try:
             return load_generic_csv(uploaded_file)
         except Exception:
-            uploaded_file.seek(0)
+            reset_uploaded_stream(uploaded_file)
             return load_booking_file(uploaded_file, cleaning_cost_default)
 
     if ext in [".xls", ".xlsx"]:
-        preview = pd.read_excel(uploaded_file, nrows=5)
-        uploaded_file.seek(0)
+        preview = read_excel_safely(uploaded_file, nrows=5)
+        reset_uploaded_stream(uploaded_file)
         if detect_booking_export(preview.columns):
             return load_booking_file(uploaded_file, cleaning_cost_default)
         raise ValueError("Excel non riconosciuto. Per ora supporto diretto solo per export Booking.")
@@ -3125,6 +3157,8 @@ def render_profile_form(profilo, onboarding_mode=False):
         "fumatori_ammessi": fumatori_ammessi,
         "parcheggio_disponibile": parcheggio_disponibile,
         "tassa_soggiorno": tassa_soggiorno_profilo,
+        "istruzioni_ingresso": str(profilo.get("istruzioni_ingresso", "") or ""),
+        "note_finali": str(profilo.get("note_finali", "") or ""),
     }
 
     if st.button(TESTI["immobile_salva_bottone"], use_container_width=True, key=f"save_profile_{'onboarding' if onboarding_mode else 'tab'}"):
