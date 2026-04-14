@@ -1426,7 +1426,6 @@ def load_booking_file(uploaded_file, cleaning_cost_default):
     price_col = find_col(["prezzo"])
     fee_col = find_col(["importo c", "commission"])
     status_col = find_col(
-        status_col = find_col(
         ["stato pr", "stato prenotazione", "booking status", "reservation status"],
         exclude_fragments=["pagamento", "payment", "commission", "commissione", "camera", "stanza", "metodo"],
         prefer_exact=["stato prenotazione", "booking status", "reservation status"
