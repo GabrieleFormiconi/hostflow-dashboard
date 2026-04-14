@@ -1,8 +1,9 @@
 streamlit
 pandas
-numpy
 openpyxl
-requests
-python-dotenv
-streamlit-aggrid
 xlrd
+streamlit-aggrid
+python-dotenv
+requests
+plotly
+numpy
