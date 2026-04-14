@@ -3125,6 +3125,8 @@ def render_profile_form(profilo, onboarding_mode=False):
         "fumatori_ammessi": fumatori_ammessi,
         "parcheggio_disponibile": parcheggio_disponibile,
         "tassa_soggiorno": tassa_soggiorno_profilo,
+        "istruzioni_ingresso": profilo.get("istruzioni_ingresso", ""),
+         "note_finali": profilo.get("note_finali", ""),
     }
 
     if st.button(TESTI["immobile_salva_bottone"], use_container_width=True, key=f"save_profile_{'onboarding' if onboarding_mode else 'tab'}"):
