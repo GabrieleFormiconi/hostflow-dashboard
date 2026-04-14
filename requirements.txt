@@ -1,4 +1,7 @@
 streamlit
 pandas
-xlrd
+numpy
 openpyxl
+requests
+python-dotenv
+streamlit-aggrid
