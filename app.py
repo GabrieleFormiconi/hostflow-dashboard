@@ -1428,10 +1428,10 @@ def load_booking_file(uploaded_file, cleaning_cost_default):
     status_col = find_col(
         ["stato pr", "stato prenotazione", "booking status", "reservation status"],
         exclude_fragments=["pagamento", "payment", "commission", "commissione", "camera", "stanza", "metodo"],
-        prefer_exact=["stato prenotazione", "booking status", "reservation status"
+        prefer_exact=["stato prenotazione", "booking status", "reservation status"]
     )
-    guests_col = find_col(["persone"])
 
+guests_col = find_col(["persone"])
     required = {
         "Nome ospite": guest_col,
         "Arrivo": checkin_col,
