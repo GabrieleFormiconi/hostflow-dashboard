@@ -1352,7 +1352,8 @@ div[data-testid="stMetric"] {{
 }}
 
 .block-container {{
-    padding: 15px 1.5rem 15px 1.5rem;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }}
 
 @media (max-width: 768px) {{
