@@ -1536,40 +1536,23 @@ div[data-testid="stMetric"] {{
 
     ```python id="mds8zl"
     /* bottone login */
-    .hf-auth-box .stButton > button,
-.hf-auth-box .stButton > button:hover,
-.hf-auth-box .stButton > button:focus,
-.hf-auth-box div[data-testid="stFormSubmitButton"] > button,
-.hf-auth-box div[data-testid="stFormSubmitButton"] > button:hover,
-.hf-auth-box div[data-testid="stFormSubmitButton"] > button:focus {{
-    width: 100% !important;
-    min-height: 48px !important;
+    .hf-auth-box button[kind="primary"],
+.hf-auth-box button[data-testid="baseButton-secondary"],
+.hf-auth-box div[data-testid="stFormSubmitButton"] button {{
     background: #2563EB !important;
     background-color: #2563EB !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border: none !important;
-    border-radius: 12px !important;
-    font-weight: 700 !important;
-    opacity: 1 !important;
-    box-shadow: none !important;
 }}
 
-.hf-auth-box .stButton > button:hover,
-.hf-auth-box div[data-testid="stFormSubmitButton"] > button:hover,
-.hf-auth-box form button[kind="primary"]:hover {{
-    background: #2563EB !important;
-    background-color: #2563EB !important;
+.hf-auth-box button[kind="primary"] *,
+.hf-auth-box button[data-testid="baseButton-secondary"] *,
+.hf-auth-box div[data-testid="stFormSubmitButton"] button * {{
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
 }}
-
-    .hf-auth-box .stButton > button *,
-    .hf-auth-box div[data-testid="stFormSubmitButton"] > button *,
-    .hf-auth-box form button[kind="primary"] * {{
-        color: #FFFFFF !important;
-        fill: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        opacity: 1 !important;
-    }}
 
     /* occhio password nero */
     .hf-auth-box .stPasswordInput button,
