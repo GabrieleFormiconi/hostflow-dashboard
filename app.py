@@ -1583,8 +1583,10 @@ div[data-testid="stMetric"] {{
 .stApp .stButton > button,
 .stApp div[data-testid="stFormSubmitButton"] > button,
 .stApp form button {{
+    background-color: {COLORI["colore_primario"]} !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
+    border: none !important;
 }}
 
 .stApp button *,
