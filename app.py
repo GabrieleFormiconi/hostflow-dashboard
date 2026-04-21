@@ -3330,7 +3330,7 @@ with st.sidebar:
         )
         selected_year = st.number_input(
             TESTI["sidebar_anno_dashboard"],
-            min_value=2024,
+            min_value=2026,
             max_value=2035,
             step=1,
             key="selected_year"
