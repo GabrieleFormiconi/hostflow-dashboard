@@ -1594,24 +1594,24 @@ div[data-testid="stMetric"] {{
         caret-color: #FFFFFF !important;
     }}
 
-    .stApp button,
-    .stApp .stButton > button,
-    .stApp div[data-testid="stFormSubmitButton"] > button,
-    .stApp form button {{
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        background: transparent !important;
-    }}
+   .stApp button,
+.stApp .stButton > button,
+.stApp div[data-testid="stFormSubmitButton"] > button,
+.stApp form button {{
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: transparent !important;
+}}
 
-    .stApp button *,
-    .stApp .stButton > button *,
-    .stApp div[data-testid="stFormSubmitButton"] > button *,
-    .stApp form button * {{
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        fill: #FFFFFF !important;
-        opacity: 1 !important;
-    }}
+.stApp button *,
+.stApp .stButton > button *,
+.stApp div[data-testid="stFormSubmitButton"] > button *,
+.stApp form button * {{
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    opacity: 1 !important;
+}}
 }}
 </style>
 """, unsafe_allow_html=True)
