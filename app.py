@@ -1541,9 +1541,9 @@ div[data-testid="stMetric"] {{
 .hf-auth-box form button[kind="primary"] {{
     width: 100% !important;
     min-height: 48px !important;
-    background: {COLORI["colore_primario"]} !important;
-    background-color: {COLORI["colore_primario"]} !important;
-    color: #2563EB !important;
+    background: #2563EB !important;
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border: none !important;
     border-radius: 12px !important;
@@ -1554,8 +1554,8 @@ div[data-testid="stMetric"] {{
 .hf-auth-box .stButton > button:hover,
 .hf-auth-box div[data-testid="stFormSubmitButton"] > button:hover,
 .hf-auth-box form button[kind="primary"]:hover {{
-    background: {COLORI["colore_primario"]} !important;
-    background-color: {COLORI["colore_primario"]} !important;
+    background: #2563EB !important;
+    background-color: #2563EB !important;
 }}
 
     .hf-auth-box .stButton > button *,
