@@ -1327,7 +1327,6 @@ def logout():
 
     st.rerun()
 
-
 st.markdown(f"""
 <style>
 .stApp {{
@@ -1342,7 +1341,8 @@ div[data-testid="stMetric"] {{
     border-radius: 16px;
 }}
 
-.stButton > button, .stDownloadButton > button {{
+.stButton > button,
+.stDownloadButton > button {{
     background-color: {COLORI["colore_primario"]};
     color: white;
     border: none;
@@ -1356,13 +1356,8 @@ div[data-testid="stMetric"] {{
     padding-bottom: 18px;
 }}
 
-@media (max-width: 768px) {{
-    .block-container {{
-        padding: 12px 0.75rem 18px 0.75rem;
-    }}
-}}
-
-.hf-auth-box, .hf-onboarding-box {{
+.hf-auth-box,
+.hf-onboarding-box {{
     max-width: 920px;
     margin: 0 auto 1.5rem auto;
     padding: 26px;
@@ -1371,18 +1366,16 @@ div[data-testid="stMetric"] {{
     border: 1px solid {COLORI["colore_bordo"]};
 }}
 
-/* SIDEBAR: solo look generale, senza stravolgere il resto */
+/* SIDEBAR */
 [data-testid="stSidebar"] {{
     background-color: {COLORI["colore_card"]};
     border-right: 1px solid {COLORI["colore_bordo"]};
 }}
 
-/* area interna sidebar */
 [data-testid="stSidebar"] > div:first-child {{
     background-color: {COLORI["colore_card"]};
 }}
 
-/* testi sidebar */
 [data-testid="stSidebar"] label,
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] h1,
@@ -1392,7 +1385,6 @@ div[data-testid="stMetric"] {{
     color: {COLORI["colore_testo"]} !important;
 }}
 
-/* input sidebar: molto leggero */
 [data-testid="stSidebar"] .stTextInput input,
 [data-testid="stSidebar"] .stNumberInput input,
 [data-testid="stSidebar"] .stTextArea textarea,
@@ -1404,7 +1396,6 @@ div[data-testid="stMetric"] {{
     border-radius: 10px !important;
 }}
 
-/* selectbox sidebar */
 [data-testid="stSidebar"] div[data-baseweb="select"] > div {{
     background-color: {COLORI["colore_box_input"]} !important;
     color: {COLORI["colore_testo"]} !important;
@@ -1412,24 +1403,25 @@ div[data-testid="stMetric"] {{
     border-radius: 10px !important;
 }}
 
-/* login/onboarding inputs */
+/* LOGIN / ONBOARDING */
 .hf-auth-box .stTextInput input,
 .hf-auth-box .stNumberInput input,
 .hf-auth-box .stTextArea textarea,
 .hf-auth-box .stDateInput input,
 .hf-auth-box .stTimeInput input,
+.hf-auth-box .stPasswordInput input,
 .hf-onboarding-box .stTextInput input,
 .hf-onboarding-box .stNumberInput input,
 .hf-onboarding-box .stTextArea textarea,
 .hf-onboarding-box .stDateInput input,
-.hf-onboarding-box .stTimeInput input {{
+.hf-onboarding-box .stTimeInput input,
+.hf-onboarding-box .stPasswordInput input {{
     background-color: {COLORI["colore_box_input"]} !important;
     color: {COLORI["colore_testo"]} !important;
     border: 1px solid {COLORI["colore_bordo"]} !important;
     border-radius: 10px !important;
 }}
 
-/* selectbox login/onboarding */
 .hf-auth-box div[data-baseweb="select"] > div,
 .hf-onboarding-box div[data-baseweb="select"] > div {{
     background-color: {COLORI["colore_box_input"]} !important;
@@ -1438,7 +1430,6 @@ div[data-testid="stMetric"] {{
     border-radius: 10px !important;
 }}
 
-/* placeholder */
 .hf-auth-box input::placeholder,
 .hf-auth-box textarea::placeholder,
 .hf-onboarding-box input::placeholder,
@@ -1446,9 +1437,14 @@ div[data-testid="stMetric"] {{
     color: rgba(255,255,255,0.60) !important;
 }}
 
-/* mobile: solo ritocchi visivi, niente override aggressivi */
+/* MOBILE */
 @media (max-width: 768px) {{
-    .hf-auth-box, .hf-onboarding-box {{
+    .block-container {{
+        padding: 12px 0.75rem 18px 0.75rem;
+    }}
+
+    .hf-auth-box,
+    .hf-onboarding-box {{
         margin: 0 auto 1rem auto;
         padding: 18px;
         border-radius: 16px;
@@ -1475,46 +1471,91 @@ div[data-testid="stMetric"] {{
         border: 1px solid rgba(255,255,255,0.10) !important;
     }}
 
-    /* label email/password */
+    /* labels login */
     .hf-auth-box label,
+    .hf-auth-box [data-testid="stWidgetLabel"],
     .hf-auth-box .stTextInput label,
+    .hf-auth-box .stPasswordInput label,
     .hf-auth-box .stTextInput > label,
     .hf-auth-box .stTextInput p,
     .hf-auth-box .stMarkdown p,
     .hf-auth-box .stMarkdown span {{
         color: #CBD5E1 !important;
+        opacity: 1 !important;
     }}
 
-    /* testo digitato negli input */
-    .hf-auth-box input,
+    /* wrapper input streamlit */
+    .hf-auth-box .stTextInput > div > div,
+    .hf-auth-box .stPasswordInput > div > div,
+    .hf-auth-box [data-baseweb="input"],
+    .hf-auth-box [data-baseweb="base-input"] {{
+        background-color: {COLORI["colore_box_input"]} !important;
+        border: 1px solid {COLORI["colore_bordo"]} !important;
+        border-radius: 12px !important;
+    }}
+
+    /* input login */
+    .hf-auth-box .stTextInput input,
+    .hf-auth-box .stPasswordInput input,
+    .hf-auth-box input[type="text"],
+    .hf-auth-box input[type="email"],
+    .hf-auth-box input[type="password"],
     .hf-auth-box textarea {{
+        background-color: {COLORI["colore_box_input"]} !important;
         color: #F8FAFC !important;
         -webkit-text-fill-color: #F8FAFC !important;
+        caret-color: #F8FAFC !important;
+        border-radius: 12px !important;
     }}
 
-    /* placeholder */
+    /* placeholder login */
     .hf-auth-box input::placeholder,
     .hf-auth-box textarea::placeholder {{
-        color: rgba(203,213,225,0.65) !important;
-        -webkit-text-fill-color: rgba(203,213,225,0.65) !important;
+        color: rgba(203,213,225,0.70) !important;
+        -webkit-text-fill-color: rgba(203,213,225,0.70) !important;
     }}
 
-    /* pulsante login */
+    /* autofill iPhone/Safari */
+    .hf-auth-box input:-webkit-autofill,
+    .hf-auth-box input:-webkit-autofill:hover,
+    .hf-auth-box input:-webkit-autofill:focus,
+    .hf-auth-box input:-webkit-autofill:active {{
+        -webkit-text-fill-color: #F8FAFC !important;
+        box-shadow: 0 0 0 1000px {COLORI["colore_box_input"]} inset !important;
+        -webkit-box-shadow: 0 0 0 1000px {COLORI["colore_box_input"]} inset !important;
+        transition: background-color 9999s ease-in-out 0s !important;
+    }}
+
+    /* icona password */
+    .hf-auth-box button[aria-label*="password"],
+    .hf-auth-box button[title*="password"],
+    .hf-auth-box svg {{
+        color: #CBD5E1 !important;
+        fill: #CBD5E1 !important;
+    }}
+
+    /* bottone login */
     .hf-auth-box .stButton > button,
-    .hf-auth-box button[kind="primary"],
-    .hf-auth-box div[data-testid="stFormSubmitButton"] button {{
+    .hf-auth-box div[data-testid="stFormSubmitButton"] > button,
+    .hf-auth-box form button[kind="primary"] {{
+        width: 100% !important;
+        min-height: 48px !important;
         background-color: {COLORI["colore_primario"]} !important;
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        -webkit-text-fill-color: #FFFFFF !important;
         border: none !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
     }}
 
-    /* testo dentro il bottone */
-    .hf-auth-box .stButton > button p,
-    .hf-auth-box .stButton > button span,
-    .hf-auth-box div[data-testid="stFormSubmitButton"] button p,
-    .hf-auth-box div[data-testid="stFormSubmitButton"] button span {{
+    .hf-auth-box .stButton > button *,
+    .hf-auth-box div[data-testid="stFormSubmitButton"] > button *,
+    .hf-auth-box form button[kind="primary"] * {{
         color: #FFFFFF !important;
+        fill: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+        opacity: 1 !important;
     }}
 }}
 </style>
