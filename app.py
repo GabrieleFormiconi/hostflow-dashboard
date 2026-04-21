@@ -1537,8 +1537,11 @@ div[data-testid="stMetric"] {{
     ```python id="mds8zl"
     /* bottone login */
     .hf-auth-box .stButton > button,
+.hf-auth-box .stButton > button:hover,
+.hf-auth-box .stButton > button:focus,
 .hf-auth-box div[data-testid="stFormSubmitButton"] > button,
-.hf-auth-box form button[kind="primary"] {{
+.hf-auth-box div[data-testid="stFormSubmitButton"] > button:hover,
+.hf-auth-box div[data-testid="stFormSubmitButton"] > button:focus {{
     width: 100% !important;
     min-height: 48px !important;
     background: #2563EB !important;
@@ -1549,6 +1552,7 @@ div[data-testid="stMetric"] {{
     border-radius: 12px !important;
     font-weight: 700 !important;
     opacity: 1 !important;
+    box-shadow: none !important;
 }}
 
 .hf-auth-box .stButton > button:hover,
