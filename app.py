@@ -1535,36 +1535,28 @@ div[data-testid="stMetric"] {{
     }}
 
     ```python id="mds8zl"
-    /* bottone login blu */
+    ```python
 .hf-auth-box button[kind="primary"],
 .hf-auth-box button[data-testid="baseButton-secondary"],
-.hf-auth-box div[data-testid="stFormSubmitButton"] button,
-.hf-auth-box .stButton > button {{
+.hf-auth-box div[data-testid="stFormSubmitButton"] button {{
     background: #2563EB !important;
     background-color: #2563EB !important;
-    background-image: none !important;
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border: none !important;
-    box-shadow: none !important;
-}}
-
-.hf-auth-box button[kind="primary"]:hover,
-.hf-auth-box button[data-testid="baseButton-secondary"]:hover,
-.hf-auth-box div[data-testid="stFormSubmitButton"] button:hover,
-.hf-auth-box .stButton > button:hover {{
-    background: #2563EB !important;
-    background-color: #2563EB !important;
 }}
 
 .hf-auth-box button[kind="primary"] *,
 .hf-auth-box button[data-testid="baseButton-secondary"] *,
-.hf-auth-box div[data-testid="stFormSubmitButton"] button *,
-.hf-auth-box .stButton > button * {{
+.hf-auth-box div[data-testid="stFormSubmitButton"] button * {{
     color: #FFFFFF !important;
     fill: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
 }}
+```
+
+Sostituisci completamente il blocco del bottone login con questo.
+
 
     /* occhio password nero */
     .hf-auth-box .stPasswordInput button,
