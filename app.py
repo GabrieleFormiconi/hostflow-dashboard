@@ -1550,17 +1550,55 @@ div[data-testid="stMetric"] {{
     }}
 
     .hf-auth-box .stButton > button *,
-    .hf-auth-box div[data-testid="stFormSubmitButton"] > button *,
-    .hf-auth-box form button[kind="primary"] * {{
-        color: #FFFFFF !important;
-        fill: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        opacity: 1 !important;
-    }}
+.hf-auth-box div[data-testid="stFormSubmitButton"] > button *,
+.hf-auth-box form button[kind="primary"] * {{
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+}}
+
+/* force mobile login text */
+.stApp [data-testid="stWidgetLabel"] *,
+.stApp .stTextInput label *,
+.stApp .stPasswordInput label *,
+.stApp label *,
+.stApp p,
+.stApp span {{
+    color: #E2E8F0 !important;
+    -webkit-text-fill-color: #E2E8F0 !important;
+    opacity: 1 !important;
+}}
+
+.stApp input,
+.stApp input[type="text"],
+.stApp input[type="email"],
+.stApp input[type="password"] {{
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    caret-color: #FFFFFF !important;
+}}
+
+.stApp button,
+.stApp .stButton > button,
+.stApp div[data-testid="stFormSubmitButton"] > button,
+.stApp form button {{
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}}
+
+.stApp button *,
+.stApp .stButton > button *,
+.stApp div[data-testid="stFormSubmitButton"] > button *,
+.stApp form button * {{
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    opacity: 1 !important;
+}}
 }}
 </style>
 """, unsafe_allow_html=True)
-
 
 # ---------------------------
 # Helpers import/pricing
