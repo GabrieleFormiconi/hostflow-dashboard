@@ -1330,168 +1330,121 @@ def logout():
 
 st.markdown(f"""
 <style>
-:root {{
-    --hf-bg: {COLORI["colore_sfondo"]};
-    --hf-card: {COLORI["colore_card"]};
-    --hf-input: {COLORI["colore_box_input"]};
-    --hf-border: {COLORI["colore_bordo"]};
-    --hf-primary: {COLORI["colore_primario"]};
-    --hf-text: {COLORI["colore_testo"]};
-    --hf-text-soft: rgba(255,255,255,0.72);
-}}
-
-/* App base */
 .stApp {{
-    background-color: var(--hf-bg);
-    color: var(--hf-text);
+    background-color: {COLORI["colore_sfondo"]};
+    color: {COLORI["colore_testo"]};
 }}
 
-/* Container principale */
-.block-container {{
-    padding: 18px 0 18px 0;
-}}
-
-/* Sidebar sfondo completo */
-[data-testid="stSidebar"] {{
-    background-color: var(--hf-input) !important;
-    border-right: 1px solid var(--hf-border);
-}}
-
-[data-testid="stSidebar"] > div:first-child {{
-    background-color: var(--hf-input) !important;
-}}
-
-/* Testi sidebar */
-[data-testid="stSidebar"] * {{
-    color: var(--hf-text);
-}}
-
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] span,
-[data-testid="stSidebar"] div {{
-    color: var(--hf-text);
-}}
-
-/* Card metriche */
 div[data-testid="stMetric"] {{
-    background-color: var(--hf-card);
-    border: 1px solid var(--hf-border);
+    background-color: {COLORI["colore_card"]};
+    border: 1px solid {COLORI["colore_bordo"]};
     padding: 14px;
     border-radius: 16px;
 }}
 
-/* Box login / onboarding */
-.hf-auth-box,
-.hf-onboarding-box {{
+.stButton > button, .stDownloadButton > button {{
+    background-color: {COLORI["colore_primario"]};
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.55rem 1rem;
+    font-weight: 600;
+}}
+
+.block-container {{
+    padding: 18px 0 18px 0;
+}}
+
+.hf-auth-box, .hf-onboarding-box {{
     max-width: 920px;
     margin: 0 auto 1.5rem auto;
     padding: 26px;
     border-radius: 18px;
-    background: var(--hf-card);
-    border: 1px solid var(--hf-border);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    background: {COLORI["colore_card"]};
+    border: 1px solid {COLORI["colore_bordo"]};
 }}
 
-/* Form generici */
-div[data-testid="stForm"] {{
-    background: transparent;
-    border: none;
+/* SIDEBAR: solo look generale, senza stravolgere il resto */
+[data-testid="stSidebar"] {{
+    background-color: {COLORI["colore_card"]};
+    border-right: 1px solid {COLORI["colore_bordo"]};
 }}
 
-/* Input, password, textarea, select */
-.stTextInput > div > div > input,
-.stNumberInput input,
-.stTextArea textarea,
-.stDateInput input,
-.stTimeInput input,
-.stSelectbox > div > div,
-.stMultiSelect > div > div,
-div[data-baseweb="select"] > div {{
-    background-color: var(--hf-input) !important;
-    color: var(--hf-text) !important;
-    border: 1px solid var(--hf-border) !important;
-    border-radius: 12px !important;
+/* area interna sidebar */
+[data-testid="stSidebar"] > div:first-child {{
+    background-color: {COLORI["colore_card"]};
 }}
 
-/* Placeholder */
-.stTextInput input::placeholder,
-.stTextArea textarea::placeholder {{
-    color: var(--hf-text-soft) !important;
+/* testi sidebar */
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] span {{
+    color: {COLORI["colore_testo"]} !important;
 }}
 
-/* Label campi */
-.stTextInput label,
-.stNumberInput label,
-.stTextArea label,
-.stDateInput label,
-.stTimeInput label,
-.stSelectbox label,
-.stMultiSelect label,
-.stRadio label,
-.stCheckbox label {{
-    color: var(--hf-text) !important;
-    font-weight: 500;
-}}
-
-/* Pulsanti */
-.stButton > button,
-.stDownloadButton > button,
-div[data-testid="stFormSubmitButton"] > button {{
-    background-color: var(--hf-primary) !important;
-    color: white !important;
-    border: none !important;
+/* input sidebar: molto leggero */
+[data-testid="stSidebar"] .stTextInput input,
+[data-testid="stSidebar"] .stNumberInput input,
+[data-testid="stSidebar"] .stTextArea textarea,
+[data-testid="stSidebar"] .stDateInput input,
+[data-testid="stSidebar"] .stTimeInput input {{
+    background-color: {COLORI["colore_box_input"]} !important;
+    color: {COLORI["colore_testo"]} !important;
+    border: 1px solid {COLORI["colore_bordo"]} !important;
     border-radius: 10px !important;
-    padding: 0.55rem 1rem !important;
-    font-weight: 600 !important;
 }}
 
-.stButton > button:hover,
-.stDownloadButton > button:hover,
-div[data-testid="stFormSubmitButton"] > button:hover {{
-    filter: brightness(1.05);
+/* selectbox sidebar */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div {{
+    background-color: {COLORI["colore_box_input"]} !important;
+    color: {COLORI["colore_testo"]} !important;
+    border: 1px solid {COLORI["colore_bordo"]} !important;
+    border-radius: 10px !important;
 }}
 
-/* Tabs */
-.stTabs [data-baseweb="tab"] {{
-    color: var(--hf-text-soft) !important;
+/* login/onboarding inputs */
+.hf-auth-box .stTextInput input,
+.hf-auth-box .stNumberInput input,
+.hf-auth-box .stTextArea textarea,
+.hf-auth-box .stDateInput input,
+.hf-auth-box .stTimeInput input,
+.hf-onboarding-box .stTextInput input,
+.hf-onboarding-box .stNumberInput input,
+.hf-onboarding-box .stTextArea textarea,
+.hf-onboarding-box .stDateInput input,
+.hf-onboarding-box .stTimeInput input {{
+    background-color: {COLORI["colore_box_input"]} !important;
+    color: {COLORI["colore_testo"]} !important;
+    border: 1px solid {COLORI["colore_bordo"]} !important;
+    border-radius: 10px !important;
 }}
 
-.stTabs [aria-selected="true"] {{
-    color: var(--hf-primary) !important;
+/* selectbox login/onboarding */
+.hf-auth-box div[data-baseweb="select"] > div,
+.hf-onboarding-box div[data-baseweb="select"] > div {{
+    background-color: {COLORI["colore_box_input"]} !important;
+    color: {COLORI["colore_testo"]} !important;
+    border: 1px solid {COLORI["colore_bordo"]} !important;
+    border-radius: 10px !important;
 }}
 
-/* Expander */
-.streamlit-expanderHeader {{
-    background-color: var(--hf-card) !important;
-    border: 1px solid var(--hf-border) !important;
-    border-radius: 12px !important;
-    color: var(--hf-text) !important;
+/* placeholder */
+.hf-auth-box input::placeholder,
+.hf-auth-box textarea::placeholder,
+.hf-onboarding-box input::placeholder,
+.hf-onboarding-box textarea::placeholder {{
+    color: rgba(255,255,255,0.60) !important;
 }}
 
-/* Tabelle / elementi boxed */
-.dashboard-card {{
-    background: var(--hf-card) !important;
-    border: 1px solid var(--hf-border) !important;
-    border-radius: 16px !important;
-}}
-
-/* Login page headings e testi */
-.hf-auth-box h1,
-.hf-auth-box h2,
-.hf-auth-box h3,
-.hf-auth-box p,
-.hf-onboarding-box h1,
-.hf-onboarding-box h2,
-.hf-onboarding-box h3,
-.hf-onboarding-box p {{
-    color: var(--hf-text) !important;
-}}
-
-/* Mobile */
+/* mobile: solo ritocchi visivi, niente override aggressivi */
 @media (max-width: 768px) {{
-    .stApp {{
-        --text-color: #F8FAFC;
+    .hf-auth-box, .hf-onboarding-box {{
+        margin: 0 auto 1rem auto;
+        padding: 18px;
+        border-radius: 16px;
     }}
 
     div[data-testid="stMetric"] label {{
@@ -1507,19 +1460,12 @@ div[data-testid="stFormSubmitButton"] > button:hover {{
     }}
 
     .stTabs [aria-selected="true"] {{
-        color: var(--hf-primary) !important;
+        color: {COLORI["colore_primario"]} !important;
     }}
 
     .dashboard-card {{
         background: #121A2B !important;
         border: 1px solid rgba(255,255,255,0.10) !important;
-    }}
-
-    .hf-auth-box,
-    .hf-onboarding-box {{
-        padding: 18px;
-        border-radius: 16px;
-        margin: 0 auto 1rem auto;
     }}
 }}
 </style>
