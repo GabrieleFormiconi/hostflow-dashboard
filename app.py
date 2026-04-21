@@ -3328,9 +3328,11 @@ with st.sidebar:
             ["Mensile", "Trimestrale", "Semestrale", "Annuale", "Personalizzato"],
             key="dashboard_period_mode"
         )
+        if "selected_year" not in st.session_state:
+            st.session_state.selected_year = datetime.now().year
         selected_year = st.number_input(
             TESTI["sidebar_anno_dashboard"],
-            min_value=2026,
+            min_value=2024,
             max_value=2035,
             step=1,
             key="selected_year"
