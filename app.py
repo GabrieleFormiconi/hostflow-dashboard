@@ -1537,18 +1537,26 @@ div[data-testid="stMetric"] {{
     ```python id="mds8zl"
     /* bottone login */
     .hf-auth-box .stButton > button,
-    .hf-auth-box div[data-testid="stFormSubmitButton"] > button,
-    .hf-auth-box form button[kind="primary"] {{
-        width: 100% !important;
-        min-height: 48px !important;
-        background-color: {COLORI["colore_primario"]} !important;
-        color: #FFFFFF !important;
-        -webkit-text-fill-color: #FFFFFF !important;
-        border: none !important;
-        border-radius: 12px !important;
-        font-weight: 700 !important;
-        opacity: 1 !important;
-    }}
+.hf-auth-box div[data-testid="stFormSubmitButton"] > button,
+.hf-auth-box form button[kind="primary"] {{
+    width: 100% !important;
+    min-height: 48px !important;
+    background: {COLORI["colore_primario"]} !important;
+    background-color: {COLORI["colore_primario"]} !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+}}
+
+.hf-auth-box .stButton > button:hover,
+.hf-auth-box div[data-testid="stFormSubmitButton"] > button:hover,
+.hf-auth-box form button[kind="primary"]:hover {{
+    background: {COLORI["colore_primario"]} !important;
+    background-color: {COLORI["colore_primario"]} !important;
+}}
 
     .hf-auth-box .stButton > button *,
     .hf-auth-box div[data-testid="stFormSubmitButton"] > button *,
