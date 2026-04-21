@@ -1352,7 +1352,7 @@ div[data-testid="stMetric"] {{
     font-weight: 600;
 }}
 .block-container {{
-    padding-top:18px 0 18px 0;
+    padding:18px 0 18px 0;
 }}
 .hf-auth-box, .hf-onboarding-box {{
     max-width: 920px;
@@ -1361,6 +1361,33 @@ div[data-testid="stMetric"] {{
     border-radius: 18px;
     background: {COLORI["colore_card"]};
     border: 1px solid {COLORI["colore_bordo"]};
+}}
+
+@media (max-width: 768px) {{
+    .stApp {{
+        --text-color: #F8FAFC;
+    }}
+
+    div[data-testid="stMetric"] label {{
+        color: #C7D0DD !important;
+    }}
+
+    div[data-testid="stMetric"] [data-testid="stMetricValue"] {{
+        color: #FFFFFF !important;
+    }}
+
+    .stTabs [data-baseweb="tab"] {{
+        color: rgba(255,255,255,0.72) !important;
+    }}
+
+    .stTabs [aria-selected="true"] {{
+        color: #FF4D57 !important;
+    }}
+
+    .dashboard-card {{
+        background: #121A2B !important;
+        border: 1px solid rgba(255,255,255,0.10) !important;
+    }}
 }}
 </style>
 """, unsafe_allow_html=True)
