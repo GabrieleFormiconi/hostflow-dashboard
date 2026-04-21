@@ -1474,6 +1474,48 @@ div[data-testid="stMetric"] {{
         background: #121A2B !important;
         border: 1px solid rgba(255,255,255,0.10) !important;
     }}
+
+    /* label email/password */
+    .hf-auth-box label,
+    .hf-auth-box .stTextInput label,
+    .hf-auth-box .stTextInput > label,
+    .hf-auth-box .stTextInput p,
+    .hf-auth-box .stMarkdown p,
+    .hf-auth-box .stMarkdown span {{
+        color: #CBD5E1 !important;
+    }}
+
+    /* testo digitato negli input */
+    .hf-auth-box input,
+    .hf-auth-box textarea {{
+        color: #F8FAFC !important;
+        -webkit-text-fill-color: #F8FAFC !important;
+    }}
+
+    /* placeholder */
+    .hf-auth-box input::placeholder,
+    .hf-auth-box textarea::placeholder {{
+        color: rgba(203,213,225,0.65) !important;
+        -webkit-text-fill-color: rgba(203,213,225,0.65) !important;
+    }}
+
+    /* pulsante login */
+    .hf-auth-box .stButton > button,
+    .hf-auth-box button[kind="primary"],
+    .hf-auth-box div[data-testid="stFormSubmitButton"] button {{
+        background-color: {COLORI["colore_primario"]} !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        border: none !important;
+    }}
+
+    /* testo dentro il bottone */
+    .hf-auth-box .stButton > button p,
+    .hf-auth-box .stButton > button span,
+    .hf-auth-box div[data-testid="stFormSubmitButton"] button p,
+    .hf-auth-box div[data-testid="stFormSubmitButton"] button span {{
+        color: #FFFFFF !important;
+    }}
 }}
 </style>
 """, unsafe_allow_html=True)
