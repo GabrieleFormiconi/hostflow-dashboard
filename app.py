@@ -1594,23 +1594,24 @@ div[data-testid="stMetric"] {{
         caret-color: #FFFFFF !important;
     }}
 
-   .stApp button,
-.stApp .stButton > button,
-.stApp div[data-testid="stFormSubmitButton"] > button,
-.stApp form button {{
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    background: transparent !important;
+   .stApp [data-testid="stWidgetLabel"] *,
+.stApp .stTextInput label *,
+.stApp .stPasswordInput label *,
+.stApp label *,
+.stApp p,
+.stApp span {{
+    color: #E2E8F0 !important;
+    -webkit-text-fill-color: #E2E8F0 !important;
+    opacity: 1 !important;
 }}
 
-.stApp button *,
-.stApp .stButton > button *,
-.stApp div[data-testid="stFormSubmitButton"] > button *,
-.stApp form button * {{
+.stApp input,
+.stApp input[type="text"],
+.stApp input[type="email"],
+.stApp input[type="password"] {{
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
-    fill: #FFFFFF !important;
-    opacity: 1 !important;
+    caret-color: #FFFFFF !important;
 }}
 }}
 </style>
