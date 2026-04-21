@@ -1543,7 +1543,7 @@ div[data-testid="stMetric"] {{
     min-height: 48px !important;
     background: {COLORI["colore_primario"]} !important;
     background-color: {COLORI["colore_primario"]} !important;
-    color: #FFFFFF !important;
+    color: #2563EB !important;
     -webkit-text-fill-color: #FFFFFF !important;
     border: none !important;
     border-radius: 12px !important;
