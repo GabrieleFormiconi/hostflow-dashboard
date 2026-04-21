@@ -1352,8 +1352,13 @@ div[data-testid="stMetric"] {{
 }}
 
 .block-container {{
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding: 20px 1.5rem 20px 1.5rem;
+}}
+
+@media (max-width: 768px) {{
+    .block-container {{
+        padding: 12px 0.75rem 18px 0.75rem;
+    }}
 }}
 
 .hf-auth-box, .hf-onboarding-box {{
