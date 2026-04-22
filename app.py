@@ -2319,6 +2319,7 @@ def render_message_from_type(message_type, guest_name, check_in, check_out, prof
 
 def build_scheduled_messages_for_booking(row, profilo, scheduling_rules=None, template_base=None):
     guest_name = str(row.get("guest_name", "") or "").strip() or "Ospite"
+    guest_phone = str(row.get("guest_phone", "") or "").strip()
     platform = str(row.get("platform", "") or "").strip() or "Booking"
     check_in = pd.to_datetime(row.get("check_in")).to_pydatetime()
     check_out = pd.to_datetime(row.get("check_out")).to_pydatetime()
@@ -2402,7 +2403,7 @@ def build_scheduled_messages_for_booking(row, profilo, scheduling_rules=None, te
             "booking_ref": booking_ref,
             "platform": platform,
             "guest_name": guest_name,
-            "guest_phone": "",
+            "guest_phone": "guest_phone",
             "guest_email": "",
             "check_in": check_in.date().isoformat(),
             "check_out": check_out.date().isoformat(),
@@ -2769,6 +2770,7 @@ def render_dashboard_dataframe(df_to_show, user_id):
         cb1, cb2 = st.columns(2)
         with cb1:
             custom_guest_name = st.text_input("Nome ospite", key="custom_booking_guest_name")
+            custom_guest_phone = st.text_input("Telefono ospite", key="custom_booking_guest_phone")
             custom_check_in = st.date_input("Check-in", value=date.today(), key="custom_booking_check_in")
             custom_check_out = st.date_input("Check-out", value=date.today() + timedelta(days=1), key="custom_booking_check_out")
             custom_guests = st.number_input("Numero ospiti", min_value=1, value=2, step=1, key="custom_booking_guests")
@@ -2790,6 +2792,7 @@ def render_dashboard_dataframe(df_to_show, user_id):
                     user_id,
                     {
                         "guest_name": custom_guest_name,
+                        "guest_phone": custom_guest_phone,
                         "check_in": custom_check_in.isoformat(),
                         "check_out": custom_check_out.isoformat(),
                         "total_price": custom_total_price,
