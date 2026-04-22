@@ -1610,6 +1610,7 @@ def load_booking_file(uploaded_file, cleaning_cost_default):
     df = pd.DataFrame({
         "platform": "Booking",
         "guest_name": raw[guest_col].astype(str).str.strip(),
+        "guest_phone": "",
         "check_in": pd.to_datetime(raw[checkin_col], errors="coerce").dt.date,
         "check_out": pd.to_datetime(raw[checkout_col], errors="coerce").dt.date,
         "total_price": raw[price_col].apply(clean_money),
@@ -1635,6 +1636,9 @@ def load_generic_csv(uploaded_file):
     missing = [c for c in required if c not in df.columns]
     if missing:
         raise ValueError(f"Mancano queste colonne nel CSV: {', '.join(missing)}")
+
+    if "guest_phone" not in df.columns:
+        df["guest_phone"] = ""
 
     df["check_in"] = pd.to_datetime(df["check_in"]).dt.date
     df["check_out"] = pd.to_datetime(df["check_out"]).dt.date
