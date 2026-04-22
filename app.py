@@ -718,8 +718,10 @@ def init_db():
             FOREIGN KEY (utente_id) REFERENCES utenti(id)
         )
     """)
-    conn.commit()
-    conn.close()
+    try:
+    cur.execute("ALTER TABLE custom_bookings ADD COLUMN guest_phone TEXT")
+except sqlite3.OperationalError:
+    pass
 
 
 def hash_password(password, salt):
