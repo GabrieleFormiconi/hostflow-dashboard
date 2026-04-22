@@ -1221,7 +1221,7 @@ def save_custom_booking(utente_id, data):
             cleaning_cost, platform_fee, transaction_cost, raw_booking_status,
             status, guests, notes, updated_at
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
         """,
         (
             int(utente_id),
@@ -1258,6 +1258,7 @@ def update_custom_booking(utente_id, booking_id, data):
         """,
         (
             str(data.get("guest_name", "") or "").strip(),
+            str(data.get("guest_phone", "") or "").strip(),
             str(data.get("check_in", "")),
             str(data.get("check_out", "")),
             float(data.get("total_price", 0) or 0),
@@ -1306,6 +1307,32 @@ def load_custom_bookings(utente_id):
 
     if df.empty:
         return df
+
+    df["check_in"] = pd.to_datetime(df["check_in"], errors="coerce").dt.date
+    df["check_out"] = pd.to_datetime(df["check_out"], errors="coerce").dt.date
+    for col in ["id", "total_price", "cleaning_cost", "platform_fee", "transaction_cost", "guests"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    df["id"] = df["id"].astype(int)
+    df["guests"] = df["guests"].astype(int).clip(lower=1)
+    df["status"] = df["status"].apply(normalize_status)
+    if "raw_booking_status" not in df.columns:
+        df["raw_booking_status"] = df["status"]
+    if "guest_phone" not in df.columns:
+        df["guest_phone"] = ""
+    return df
+
+    df["check_in"] = pd.to_datetime(df["check_in"], errors="coerce").dt.date
+    df["check_out"] = pd.to_datetime(df["check_out"], errors="coerce").dt.date
+    for col in ["id", "total_price", "cleaning_cost", "platform_fee", "transaction_cost", "guests"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    df["id"] = df["id"].astype(int)
+    df["guests"] = df["guests"].astype(int).clip(lower=1)
+    df["status"] = df["status"].apply(normalize_status)
+    if "raw_booking_status" not in df.columns:
+        df["raw_booking_status"] = df["status"]
+    if "guest_phone" not in df.columns:
+        df["guest_phone"] = ""
+    return df
 
     df["check_in"] = pd.to_datetime(df["check_in"], errors="coerce").dt.date
     df["check_out"] = pd.to_datetime(df["check_out"], errors="coerce").dt.date
