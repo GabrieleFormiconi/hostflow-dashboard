@@ -4197,7 +4197,7 @@ if "pulizie_servizi" in tab_map:
             avg_cleaning_cost = current_period_cleaning["total_cost"].mean() if not current_period_cleaning.empty else 0
             k4.metric("Costo medio pulizia", f'€ {avg_cleaning_cost:.2f}')
 
-                        cleaning_services_display = current_period_cleaning.copy()
+            cleaning_services_display = current_period_cleaning.copy()
 
             if not cleaning_services_display.empty:
                 cleaning_services_display = cleaning_services_display.sort_values(
