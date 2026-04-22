@@ -4234,8 +4234,8 @@ if "messaggi" in tab_map:
                                                 error_message=None,
                                                 set_sent_now=True,
                                             )
-                                            st.success("Messaggio WhatsApp inviato correttamente.")
-                                            st.rerun()
+                                            #st.success("Messaggio WhatsApp inviato correttamente.")
+                                            #st.rerun()
                                         else:
                                             update_scheduled_message_status(
                                                 selected_id,
