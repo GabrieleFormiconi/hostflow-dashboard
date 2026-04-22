@@ -1319,6 +1319,7 @@ def load_custom_bookings(utente_id):
         df["raw_booking_status"] = df["status"]
     if "guest_phone" not in df.columns:
         df["guest_phone"] = ""
+    df["guest_phone"] = df["guest_phone"].fillna("").astype(str)
     return df
 
     df["check_in"] = pd.to_datetime(df["check_in"], errors="coerce").dt.date
