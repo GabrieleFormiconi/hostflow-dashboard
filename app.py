@@ -806,6 +806,8 @@ WHATSAPP_PHONE_NUMBER_ID = get_secret_value("WHATSAPP_PHONE_NUMBER_ID", "")
 WHATSAPP_BUSINESS_ACCOUNT_ID = get_secret_value("WHATSAPP_BUSINESS_ACCOUNT_ID", "")
 WHATSAPP_VERIFY_TOKEN = get_secret_value("WHATSAPP_VERIFY_TOKEN", "hostflow_verify_token")
 
+st.write("DEBUG TOKEN PRESENTE:", bool(WHATSAPP_ACCESS_TOKEN))
+st.write("DEBUG PHONE ID:", WHATSAPP_PHONE_NUMBER_ID)
 
 def smtp_config_disponibile():
     host = str(get_secret_value("SMTP_HOST", "") or "").strip()
