@@ -4197,14 +4197,51 @@ if "pulizie_servizi" in tab_map:
             avg_cleaning_cost = current_period_cleaning["total_cost"].mean() if not current_period_cleaning.empty else 0
             k4.metric("Costo medio pulizia", f'€ {avg_cleaning_cost:.2f}')
 
-            st.markdown("### Prenotazioni associate")
+                        cleaning_services_display = current_period_cleaning.copy()
 
-            movements_df = build_cleaning_movements(valid_cleaning)
+            if not cleaning_services_display.empty:
+                cleaning_services_display = cleaning_services_display.sort_values(
+                    by="service_date_dt",
+                    ascending=False
+                )
 
-            if movements_df.empty:
-                st.info("Nessun check-in o check-out disponibile.")
+                st.dataframe(
+                    cleaning_services_display[
+                        [
+                            "id",
+                            "service_date",
+                            "guest_name",
+                            "service_type",
+                            "cleaner_name",
+                            "start_time",
+                            "end_time",
+                            "hours_worked",
+                            "hourly_rate",
+                            "extra_cost",
+                            "total_cost",
+                            "payment_status",
+                            "notes",
+                        ]
+                    ].rename(columns={
+                        "id": "ID",
+                        "service_date": "Data",
+                        "guest_name": "Cliente",
+                        "service_type": "Tipo servizio",
+                        "cleaner_name": "Donna pulizie",
+                        "start_time": "Ora inizio",
+                        "end_time": "Ora fine",
+                        "hours_worked": "Ore",
+                        "hourly_rate": "Tariffa oraria",
+                        "extra_cost": "Extra",
+                        "total_cost": "Totale",
+                        "payment_status": "Stato pagamento",
+                        "notes": "Note",
+                    }),
+                    width="stretch",
+                    hide_index=True
+                )
             else:
-                st.dataframe(movements_df, width="stretch")
+                st.info("Nessun servizio di pulizia registrato nel periodo selezionato.")
 
             st.markdown("### Inserimento servizio pulizia")
             dashboard_cleaning_source = filtered_df if filtered_df is not None and not filtered_df.empty else valid_cleaning
