@@ -824,6 +824,10 @@ def send_whatsapp_message(phone_number, message_text):
     if not clean_phone:
         return False, "Numero telefono mancante"
 
+    text_body = str(message_text or "").strip()
+    if not text_body:
+        return False, "Testo messaggio mancante"
+
     url = f"https://graph.facebook.com/v23.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
 
     headers = {
@@ -836,20 +840,25 @@ def send_whatsapp_message(phone_number, message_text):
         "to": clean_phone,
         "type": "text",
         "text": {
-            "body": str(message_text or "")
+            "body": text_body
         }
     }
 
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=20)
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
 
-        if response.status_code in [200, 201]:
-            return True, response.json()
+        try:
+            data = response.json()
+        except Exception:
+            data = {"raw_text": response.text}
 
-        return False, response.text
+        if response.status_code in (200, 201):
+            return True, data
+
+        return False, f"HTTP {response.status_code} - {data}"
 
     except Exception as e:
-        return False, str(e)
+        return False, f"Eccezione richiesta WhatsApp: {e}"
 
 
 def invia_email_reset_password(destinatario_email, codice):
@@ -4207,11 +4216,13 @@ if "messaggi" in tab_map:
                                 action1, action2, action3 = st.columns(3)
 
                                 with action1:
-                                    if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
+                                   if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
                                         phone_number = str(current_msg.get("guest_phone", "") or "").strip()
                                         message_text = str(current_msg.get("message_text", "") or "").strip()
 
                                         success, result = send_whatsapp_message(phone_number, message_text)
+
+                                        st.write("DEBUG result:", result)
 
                                         if success:
                                             update_scheduled_message_status(
