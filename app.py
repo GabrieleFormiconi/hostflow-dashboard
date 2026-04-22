@@ -4084,6 +4084,7 @@ if "messaggi" in tab_map:
                         "id": "ID",
                         "platform": "Piattaforma",
                         "guest_name": "Ospite",
+                        "guest_phone": "Telefono",
                         "check_in": "Check-in",
                         "check_out": "Check-out",
                         "tipo": "Tipo messaggio",
@@ -4093,7 +4094,7 @@ if "messaggi" in tab_map:
                         "message_text": "Testo messaggio",
                         "sent_at": "Inviato il",
                     })[[
-                        "ID", "Piattaforma", "Ospite", "Check-in", "Check-out",
+                        "ID", "Piattaforma", "Ospite", "Telefono", "Check-in", "Check-out",
                         "Tipo messaggio", "Invio programmato", "Canale", "Stato", "Inviato il", "Testo messaggio"
                     ]]
 
