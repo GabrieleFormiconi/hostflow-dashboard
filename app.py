@@ -702,6 +702,7 @@ def init_db():
             utente_id INTEGER NOT NULL,
             platform TEXT DEFAULT 'Custom',
             guest_name TEXT NOT NULL,
+            guest_phone TEXT,
             check_in TEXT NOT NULL,
             check_out TEXT NOT NULL,
             total_price REAL DEFAULT 0,
@@ -1214,7 +1215,7 @@ def save_custom_booking(utente_id, data):
     cur.execute(
         """
         INSERT INTO custom_bookings (
-            utente_id, platform, guest_name, check_in, check_out, total_price,
+            utente_id, platform, guest_name, guest_phone, check_in, check_out, total_price,
             cleaning_cost, platform_fee, transaction_cost, raw_booking_status,
             status, guests, notes, updated_at
         )
@@ -1224,6 +1225,7 @@ def save_custom_booking(utente_id, data):
             int(utente_id),
             "Custom",
             str(data.get("guest_name", "") or "").strip(),
+            str(data.get("guest_phone", "") or "").strip(),
             str(data.get("check_in", "")),
             str(data.get("check_out", "")),
             float(data.get("total_price", 0) or 0),
@@ -1246,7 +1248,7 @@ def update_custom_booking(utente_id, booking_id, data):
     cur.execute(
         """
         UPDATE custom_bookings
-        SET guest_name = ?, check_in = ?, check_out = ?, total_price = ?,
+        SET guest_name = ?, guest_phone = ?, check_in = ?, check_out = ?, total_price = ?,
             cleaning_cost = ?, platform_fee = ?, transaction_cost = ?,
             raw_booking_status = ?, status = ?, guests = ?, notes = ?,
             updated_at = CURRENT_TIMESTAMP
@@ -1290,7 +1292,7 @@ def delete_custom_booking(utente_id, booking_id):
 def load_custom_bookings(utente_id):
     conn = get_conn()
     query = """
-        SELECT id, platform, guest_name, check_in, check_out, total_price,
+        SELECT id, platform, guest_name, guest_phone, check_in, check_out, total_price,
                cleaning_cost, platform_fee, transaction_cost,
                raw_booking_status, status, guests, notes
         FROM custom_bookings
