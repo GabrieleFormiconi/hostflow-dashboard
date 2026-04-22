@@ -4253,7 +4253,7 @@ if "pulizie_servizi" in tab_map:
                 start_time = st.text_input("Ora inizio", value="11:00", key="cleaning_start_time")
                 end_time = st.text_input("Ora fine", value="13:00", key="cleaning_end_time")
             with form_col2:
-                hourly_rate = st.number_input("Tariffa oraria (€)", min_value=0.0, value=12.0, step=0.5, key="cleaning_hourly_rate")
+                hourly_rate = st.number_input("Tariffa oraria (€)", min_value=0.0, value=10.0, step=0.5, key="cleaning_hourly_rate")
                 extra_cost = st.number_input("Extra / materiali (€)", min_value=0.0, value=0.0, step=1.0, key="cleaning_extra_cost")
                 use_custom_total = st.checkbox("Totale custom", value=False, key="cleaning_use_custom_total")
                 custom_total_override = st.number_input(
