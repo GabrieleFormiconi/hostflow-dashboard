@@ -3485,13 +3485,13 @@ with st.sidebar:
             key="dashboard_period_mode"
         )
         selected_year = st.number_input(
-            TESTI["sidebar_anno_dashboard"],
-            min_value=2024,
-            max_value=2035,
-            step=1,
-            key="selected_year"
-        )
-
+    TESTI["sidebar_anno_dashboard"],
+    min_value=2024,
+    max_value=2035,
+    value=datetime.now().year,
+    step=1,
+    key="selected_year"
+)
         selected_month = int(st.session_state.get("selected_month", date.today().month))
         selected_quarter = int(st.session_state.get("selected_quarter", 1))
         selected_semester = int(st.session_state.get("selected_semester", 1))
