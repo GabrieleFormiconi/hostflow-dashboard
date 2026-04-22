@@ -4219,7 +4219,6 @@ if "messaggi" in tab_map:
                                 action1, action2, action3 = st.columns(3)
 
                                 with action1:
-                                with action1:
                                     if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
                                         message_text = str(current_msg.get("message_text", "") or "").strip()
 
