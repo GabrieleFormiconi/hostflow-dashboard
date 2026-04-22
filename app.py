@@ -822,7 +822,7 @@ def send_whatsapp_message(phone_number, message_text):
     clean_phone = re.sub(r"[^\d+]", "", clean_phone)
 
     if clean_phone.startswith("3") and len(clean_phone) == 10:
-    clean_phone = "39" + clean_phone
+       clean_phone = "39" + clean_phone
 
     if not clean_phone:
         return False, "Numero telefono mancante"
