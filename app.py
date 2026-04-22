@@ -2582,7 +2582,12 @@ def replace_scheduled_messages_for_user(utente_id, bookings_df, profilo, schedul
     updated = 0
 
     for _, row in valid.iterrows():
-        for msg in build_scheduled_messages_for_booking(row, profilo, scheduling_rules=scheduling_rules, template_base=template_base):
+        for msg in build_scheduled_messages_for_booking(
+            row,
+            profilo,
+            scheduling_rules=scheduling_rules,
+            template_base=template_base,
+        ):
             key = (msg["booking_ref"], msg["message_type"], msg["send_at"])
             current_keys.add(key)
             existing = existing_map.get(key)
@@ -2592,7 +2597,7 @@ def replace_scheduled_messages_for_user(utente_id, bookings_df, profilo, schedul
                     cur.execute(
                         """
                         UPDATE scheduled_messages
-                        SET platform = ?, guest_name = ?, guest_phone = ? check_in = ?, check_out = ?, channel = ?
+                        SET platform = ?, guest_name = ?, guest_phone = ?, check_in = ?, check_out = ?, channel = ?
                         WHERE id = ?
                         """,
                         (
@@ -2609,7 +2614,7 @@ def replace_scheduled_messages_for_user(utente_id, bookings_df, profilo, schedul
                     cur.execute(
                         """
                         UPDATE scheduled_messages
-                        SET platform = ?, guest_name = ?, guest_phone = ? check_in = ?, check_out = ?,
+                        SET platform = ?, guest_name = ?, guest_phone = ?, check_in = ?, check_out = ?,
                             message_text = ?, channel = ?, status = 'pending', error_message = NULL
                         WHERE id = ?
                         """,
