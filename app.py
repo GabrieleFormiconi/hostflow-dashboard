@@ -2858,6 +2858,11 @@ def render_dashboard_dataframe(df_to_show, user_id):
             ec1, ec2 = st.columns(2)
             with ec1:
                 edit_guest_name = st.text_input("Nome ospite", value=str(selected_custom_row["guest_name"]), key=f"edit_custom_guest_name_{selected_custom_id}")
+                edit_guest_phone = st.text_input(
+                    "Telefono ospite",
+                    value=str(selected_custom_row.get("guest_phone", "") or ""),
+                    key=f"edit_custom_guest_phone_{selected_custom_id}"
+                )
                 edit_check_in = st.date_input("Check-in", value=pd.to_datetime(selected_custom_row["check_in"]).date(), key=f"edit_custom_check_in_{selected_custom_id}")
                 edit_check_out = st.date_input("Check-out", value=pd.to_datetime(selected_custom_row["check_out"]).date(), key=f"edit_custom_check_out_{selected_custom_id}")
                 edit_guests = st.number_input("Numero ospiti", min_value=1, value=int(selected_custom_row["guests"]), step=1, key=f"edit_custom_guests_{selected_custom_id}")
@@ -2884,6 +2889,7 @@ def render_dashboard_dataframe(df_to_show, user_id):
                             selected_custom_id,
                             {
                                 "guest_name": edit_guest_name,
+                                "guest_phone": edit_guest_phone,
                                 "check_in": edit_check_in.isoformat(),
                                 "check_out": edit_check_out.isoformat(),
                                 "total_price": edit_total_price,
@@ -2912,6 +2918,7 @@ def render_dashboard_dataframe(df_to_show, user_id):
             custom_display = custom_display.rename(columns={
                 "id": "ID",
                 "guest_name": "Ospite",
+                "guest_phone": "Telefono",
                 "check_in": "Check-in",
                 "check_out": "Check-out",
                 "total_price": "Prezzo netto",
@@ -2920,7 +2927,7 @@ def render_dashboard_dataframe(df_to_show, user_id):
                 "guests": "Ospiti",
                 "notes": "Note",
             })
-            st.dataframe(custom_display[["ID", "Ospite", "Check-in", "Check-out", "Ospiti", "Prezzo netto", "Pulizie", "Stato", "Note"]], width="stretch")
+            st.dataframe(custom_display[["ID", "Ospite", "Telefono", "Check-in", "Check-out", "Ospiti", "Prezzo netto", "Pulizie", "Stato", "Note"]], width="stretch")
 
     visible_columns = carica_sidebar_settings(user_id).get("dashboard_visible_columns", saved_visible_columns.copy())
     visible_columns = [col for col in visible_columns if col in all_columns]
