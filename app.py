@@ -3436,6 +3436,7 @@ with st.sidebar:
         monthly_cleaning_cost = st.number_input(
             TESTI["sidebar_pulizie_mensili"],
             min_value=0.0,
+            value=0.0,
             step=10.0,
             key="monthly_cleaning_cost"
         )
