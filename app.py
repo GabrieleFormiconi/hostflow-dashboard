@@ -4515,39 +4515,7 @@ if "pulizie_servizi" in tab_map:
                                 st.success("Servizio pulizia eliminato.")
                                 st.rerun()
 
-                cleaning_display = cleaning_df.copy()
-                cleaning_display["service_date"] = pd.to_datetime(cleaning_display["service_date"], errors="coerce").dt.strftime("%d/%m/%Y")
-                cleaning_display["hours_worked"] = cleaning_display["hours_worked"].map(lambda x: f"{float(x):.2f}")
-                cleaning_display["hourly_rate"] = cleaning_display["hourly_rate"].map(lambda x: f"€ {float(x):.2f}")
-                cleaning_display["extra_cost"] = cleaning_display["extra_cost"].map(lambda x: f"€ {float(x):.2f}")
-                cleaning_display["total_cost"] = cleaning_display["total_cost"].map(lambda x: f"€ {float(x):.2f}")
-                cleaning_display["service_type"] = cleaning_display["service_type"].map({
-                    "check_out": "Pulizia check-out",
-                    "check_in": "Preparazione check-in",
-                    "extra": "Pulizia extra",
-                }).fillna(cleaning_display["service_type"])
-
-                st.dataframe(
-                    cleaning_display.rename(columns={
-                        "id": "ID",
-                        "service_date": "Data",
-                        "guest_name": "Cliente",
-                        "service_type": "Tipo servizio",
-                        "cleaner_name": "Donna pulizie",
-                        "start_time": "Ora inizio",
-                        "end_time": "Ora fine",
-                        "hours_worked": "Ore",
-                        "hourly_rate": "Tariffa oraria",
-                        "extra_cost": "Extra",
-                        "total_cost": "Totale",
-                        "payment_status": "Stato pagamento",
-                        "notes": "Note",
-                    })[[
-                        "ID", "Data", "Cliente", "Tipo servizio", "Donna pulizie",
-                        "Ora inizio", "Ora fine", "Ore", "Tariffa oraria", "Extra", "Totale", "Stato pagamento", "Note"
-                    ]],
-                    width="stretch",
-                )
+            
 
                 with st.expander("Riepilogo mensile pulizie", expanded=False):
                     summary_df = cleaning_df.copy()
