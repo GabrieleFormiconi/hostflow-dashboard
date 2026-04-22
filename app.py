@@ -4251,7 +4251,7 @@ if "pulizie_servizi" in tab_map:
                 )
                 cleaner_name = st.text_input("Donna delle pulizie", key="cleaner_name")
                 start_time = st.text_input("Ora inizio", value="11:00", key="cleaning_start_time")
-                end_time = st.text_input("Ora fine", value="12:00", key="cleaning_end_time")
+                end_time = st.text_input("Ora fine", value="12:30", key="cleaning_end_time")
             with form_col2:
                 hourly_rate = st.number_input("Tariffa oraria (€)", min_value=0.0, value=10.0, step=0.5, key="cleaning_hourly_rate")
                 extra_cost = st.number_input("Extra / materiali (€)", min_value=0.0, value=0.0, step=1.0, key="cleaning_extra_cost")
