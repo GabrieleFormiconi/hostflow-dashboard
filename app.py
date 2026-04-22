@@ -3429,6 +3429,7 @@ with st.sidebar:
         cleaning_cost_default = st.number_input(
             TESTI["sidebar_pulizie_prenotazione"],
             min_value=0.0,
+            value=0.0,
             step=1.0,
             key="cleaning_cost_default"
         )
