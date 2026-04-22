@@ -4279,16 +4279,9 @@ if "messaggi" in tab_map:
                                     if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
                                         phone_number = str(current_msg.get("guest_phone", "") or "").strip()
                                         message_text = str(current_msg.get("message_text", "") or "").strip()
-
-                                        st.write("DEBUG bottone cliccato")
-                                        st.write("DEBUG numero:", phone_number)
-                                        st.write("DEBUG testo:", message_text)
-
+                            
                                         success, result = send_whatsapp_message(phone_number, message_text)
-
-                                        st.write("DEBUG success:", success)
-                                        st.write("DEBUG result:", result)
-
+                                    
                                         if success:
                                             update_scheduled_message_status(
                                                 selected_id,
