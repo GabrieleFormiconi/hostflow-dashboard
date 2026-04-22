@@ -1329,7 +1329,7 @@ def sidebar_defaults():
     return {
         "import_mode": "Auto",
         "cleaning_mode": "Per prenotazione",
-        "cleaning_cost_default": 35.0,
+        "cleaning_cost_default": 0.0,
         "monthly_cleaning_cost": 0.0,
         "include_city_tax": True,
         "city_tax_rate": 4.0,
