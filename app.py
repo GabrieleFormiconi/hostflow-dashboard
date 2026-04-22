@@ -2592,12 +2592,13 @@ def replace_scheduled_messages_for_user(utente_id, bookings_df, profilo, schedul
                     cur.execute(
                         """
                         UPDATE scheduled_messages
-                        SET platform = ?, guest_name = ?, check_in = ?, check_out = ?, channel = ?
+                        SET platform = ?, guest_name = ?, guest_phone = ? check_in = ?, check_out = ?, channel = ?
                         WHERE id = ?
                         """,
                         (
                             msg["platform"],
                             msg["guest_name"],
+                            msg["guest_phone"],
                             msg["check_in"],
                             msg["check_out"],
                             msg["channel"],
@@ -2608,13 +2609,14 @@ def replace_scheduled_messages_for_user(utente_id, bookings_df, profilo, schedul
                     cur.execute(
                         """
                         UPDATE scheduled_messages
-                        SET platform = ?, guest_name = ?, check_in = ?, check_out = ?,
+                        SET platform = ?, guest_name = ?, guest_phone = ? check_in = ?, check_out = ?,
                             message_text = ?, channel = ?, status = 'pending', error_message = NULL
                         WHERE id = ?
                         """,
                         (
                             msg["platform"],
                             msg["guest_name"],
+                            msg["guest_phone"],
                             msg["check_in"],
                             msg["check_out"],
                             msg["message_text"],
