@@ -4188,8 +4188,8 @@ if "messaggi" in tab_map:
                                 key=preview_message_key(selected_id, current_msg["message_text"]),
                             )
 
-                            if current_msg["status"] == "failed":
-                                action1, action2, action3 = st.columns(3)
+                        if current_msg["status"] == "failed":
+                            action1, action2, action3 = st.columns(3)
 
                             with action1:
                                 if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
