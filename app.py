@@ -4191,32 +4191,32 @@ if "messaggi" in tab_map:
                             if current_msg["status"] == "failed":
                                 action1, action2, action3 = st.columns(3)
 
-                                with action1:
-                                    if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
-                                         phone_number = str(current_msg.get("guest_phone", "") or "").strip()
-                                         message_text = str(current_msg.get("message_text", "") or "").strip()
+                            with action1:
+                                if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
+                                    phone_number = str(current_msg.get("guest_phone", "") or "").strip()
+                                    message_text = str(current_msg.get("message_text", "") or "").strip()
 
-                                         success, result = send_whatsapp_message(phone_number, message_text)
+                                    success, result = send_whatsapp_message(phone_number, message_text)
 
-                                    if success:
-                                        update_scheduled_message_status(
-                                            selected_id,
-                                            st.session_state.utente["id"],
-                                            "sent",
-                                            error_message=None,
-                                            set_sent_now=True,
-                                       )
-                                       st.success("Messaggio WhatsApp inviato correttamente.")
-                                       st.rerun()
-                                   else:
-                                       update_scheduled_message_status(
-                                           selected_id,
-                                           st.session_state.utente["id"],
-                                           "failed",
-                                           error_message=str(result),
-                                           set_sent_now=False,
-                                      )
-                                      st.error(f"Errore invio WhatsApp: {result}")
+                                if success:
+                                    update_scheduled_message_status(
+                                        selected_id,
+                                        st.session_state.utente["id"],
+                                        "sent",
+                                        error_message=None,
+                                        set_sent_now=True,
+                                    )
+                                    st.success("Messaggio WhatsApp inviato correttamente.")
+                                    st.rerun()
+                                else:
+                                    update_scheduled_message_status(
+                                        selected_id,
+                                        st.session_state.utente["id"],
+                                        "failed",
+                                        error_message=str(result),
+                                        set_sent_now=False,
+                                    )
+                                    st.error(f"Errore invio WhatsApp: {result}")
 
                              with action2:
                                  if st.button("Riprova invio", use_container_width=True, key=f"retry_msg_{selected_id}"):
