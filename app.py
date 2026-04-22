@@ -4226,19 +4226,19 @@ if "messaggi" in tab_map:
                                         message_text = str(current_msg.get("message_text", "") or "").strip()
 
                                         success, result = send_whatsapp_message(phone_number, message_text)
-
                                         st.write("DEBUG result:", result)
 
-                                        if success:
-                                            update_scheduled_message_status(
-                                                selected_id,
-                                                st.session_state.utente["id"],
-                                                "sent",
-                                                error_message=None,
-                                                set_sent_now=True,
+                                       if success:
+                                           update_scheduled_message_status(
+                                               selected_id,
+                                               st.session_state.utente["id"],
+                                               "sent",
+                                               error_message=None,
+                                               set_sent_now=True,
                                             )
                                             st.success("Messaggio WhatsApp inviato correttamente.")
                                             st.rerun()
+                            
                                         else:
                                             update_scheduled_message_status(
                                                 selected_id,
