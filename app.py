@@ -719,9 +719,9 @@ def init_db():
         )
     """)
     try:
-    cur.execute("ALTER TABLE custom_bookings ADD COLUMN guest_phone TEXT")
-except sqlite3.OperationalError:
-    pass
+       cur.execute("ALTER TABLE custom_bookings ADD COLUMN guest_phone TEXT")
+    except sqlite3.OperationalError:
+       pass
 
 
 def hash_password(password, salt):
