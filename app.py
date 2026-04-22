@@ -3369,6 +3369,8 @@ if st.session_state.utente is None:
 profilo = st.session_state.profilo_immobile or carica_profilo_immobile(st.session_state.utente["id"])
 st.session_state.profilo_immobile = profilo
 inizializza_sidebar_state(st.session_state.utente["id"])
+st.session_state.cleaning_cost_default = 0.0
+st.session_state.monthly_cleaning_cost = 0.0
 
 if st.session_state.get("auth_token"):
     st.query_params["session"] = st.session_state["auth_token"]
