@@ -4316,7 +4316,7 @@ if "messaggi" in tab_map:
                                             st.rerun()
 
                             if current_msg.get("error_message"):
-                                st.error(f'Errore registrato: {current_msg["error_message"]}')
+                                st.info("Premi 'Genera / aggiorna messaggi programmati' per rigenerare i messaggi e aggiornare eventuali errori precedenti.")
                     else:
                         st.info("Nessun messaggio corrisponde ai filtri selezionati.")
 
