@@ -1,5 +1,6 @@
 import io
 import os
+import requests
 import re
 import json
 import smtplib
@@ -792,6 +793,11 @@ def get_secret_value(name, default=None):
         pass
     return os.getenv(name, default)
 
+WHATSAPP_ACCESS_TOKEN = get_secret_value("WHATSAPP_ACCESS_TOKEN", "")
+WHATSAPP_PHONE_NUMBER_ID = get_secret_value("WHATSAPP_PHONE_NUMBER_ID", "")
+WHATSAPP_BUSINESS_ACCOUNT_ID = get_secret_value("WHATSAPP_BUSINESS_ACCOUNT_ID", "")
+WHATSAPP_VERIFY_TOKEN = get_secret_value("WHATSAPP_VERIFY_TOKEN", "hostflow_verify_token")
+
 
 def smtp_config_disponibile():
     host = str(get_secret_value("SMTP_HOST", "") or "").strip()
@@ -799,6 +805,43 @@ def smtp_config_disponibile():
     password = str(get_secret_value("SMTP_PASSWORD", "") or "").strip()
     from_email = str(get_secret_value("SMTP_FROM_EMAIL", username) or "").strip()
     return all([host, username, password, from_email])
+
+def send_whatsapp_message(phone_number, message_text):
+    if not WHATSAPP_ACCESS_TOKEN or not WHATSAPP_PHONE_NUMBER_ID:
+        return False, "Configurazione WhatsApp mancante"
+
+    clean_phone = str(phone_number or "").strip()
+    clean_phone = re.sub(r"[^\d+]", "", clean_phone)
+
+    if not clean_phone:
+        return False, "Numero telefono mancante"
+
+    url = f"https://graph.facebook.com/v23.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
+
+    headers = {
+        "Authorization": f"Bearer {WHATSAPP_ACCESS_TOKEN}",
+        "Content-Type": "application/json",
+    }
+
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": clean_phone,
+        "type": "text",
+        "text": {
+            "body": str(message_text or "")
+        }
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=20)
+
+        if response.status_code in [200, 201]:
+            return True, response.json()
+
+        return False, response.text
+
+    except Exception as e:
+        return False, str(e)
 
 
 def invia_email_reset_password(destinatario_email, codice):
@@ -4149,17 +4192,18 @@ if "messaggi" in tab_map:
                                 action1, action2, action3 = st.columns(3)
 
                                 with action1:
-                                    if st.button("Invia ora", use_container_width=True, key=f"send_now_{selected_id}"):
-                                        ok = update_scheduled_message_status(
-                                            selected_id,
-                                            st.session_state.utente["id"],
-                                            "sent",
-                                            error_message=None,
-                                            set_sent_now=True,
-                                        )
-                                        if ok:
-                                            st.success("Messaggio segnato come inviato ora.")
+                                    if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
+                                        phone_number = str(selected_row.get("guest_phone", "") or "").strip()
+                                        message_text = str(selected_row.get("message_text", "") or "").strip()
+
+                                        success, result = send_whatsapp_message(phone_number, message_text)
+
+                                        if success:
+                                            update_scheduled_message_status(selected_id, "sent")
+                                            st.success("Messaggio WhatsApp inviato correttamente.")
                                             st.rerun()
+                                        else:
+                                            st.error(f"Errore invio WhatsApp: {result}")
 
                                 with action2:
                                     if st.button("Riprova invio", use_container_width=True, key=f"retry_msg_{selected_id}"):
