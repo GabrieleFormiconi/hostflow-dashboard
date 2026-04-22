@@ -4080,6 +4080,10 @@ if "messaggi" in tab_map:
                     pretty_df["send_at"] = pd.to_datetime(pretty_df["send_at"]).dt.strftime("%d/%m/%Y %H:%M")
                     pretty_df["sent_at"] = pd.to_datetime(pretty_df["sent_at"], errors="coerce").dt.strftime("%d/%m/%Y %H:%M")
 
+                    if "guest_phone" not in pretty_df.columns:
+                        pretty_df["guest_phone"] = ""
+
+                    pretty_df["guest_phone"] = pretty_df["guest_phone"].fillna("").astype(str)
                     table_df = pretty_df.rename(columns={
                         "id": "ID",
                         "platform": "Piattaforma",
