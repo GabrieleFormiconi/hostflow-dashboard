@@ -4495,7 +4495,13 @@ if "messaggi" in tab_map:
                                     with action1:
                                         if st.button("Invia WhatsApp ora", use_container_width=True, key=f"send_now_{selected_id}"):
                                             phone_number = resolve_message_guest_phone(current_msg, df)
-                                            message_text = str(current_msg.get("message_text", "") or "").strip()
+                                            message_text = str(
+                                                current_msg.get("message_text")
+                                                or current_msg.get("text")
+                                                or current_msg.get("body")
+                                                or current_msg.get("messaggio")
+                                                or ""
+                                            ).strip()
                                             success, result = send_whatsapp_message(phone_number, message_text)
                                             if success:
                                                 update_scheduled_message_status(
