@@ -4345,7 +4345,7 @@ if "pulizie_servizi" in tab_map:
                 st.success("Servizio pulizia salvato.")
                 st.rerun()
 
-            st.markdown("### Registro pulizie")
+            st.markdown("### Modifica pulizie")
             cleaning_df = load_cleaning_services(st.session_state.utente["id"])
             if cleaning_df.empty:
                 st.info("Nessun servizio pulizia registrato.")
