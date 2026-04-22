@@ -4197,14 +4197,14 @@ if "pulizie_servizi" in tab_map:
             avg_cleaning_cost = current_period_cleaning["total_cost"].mean() if not current_period_cleaning.empty else 0
             k4.metric("Costo medio pulizia", f'€ {avg_cleaning_cost:.2f}')
 
-           st.markdown("### Prenotazioni associate")
+            st.markdown("### Prenotazioni associate")
 
-           movements_df = build_cleaning_movements(valid_cleaning)
+            movements_df = build_cleaning_movements(valid_cleaning)
 
-           if movements_df.empty:
-               st.info("Nessun check-in o check-out disponibile.")
-           else:
-               st.dataframe(movements_df, width="stretch")
+            if movements_df.empty:
+                st.info("Nessun check-in o check-out disponibile.")
+            else:
+                st.dataframe(movements_df, width="stretch")
 
             st.markdown("### Inserimento servizio pulizia")
             dashboard_cleaning_source = filtered_df if filtered_df is not None and not filtered_df.empty else valid_cleaning
